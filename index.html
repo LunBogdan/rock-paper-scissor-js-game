@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Rock, Paper, Scissors!</title>
+  </head>
+  <body>
+    <script>
+      let winCounter = 0;
+      let loseCounter = 0;
+
+      function computerPlay() {
+        let myArray = ["Rock", "Paper", "Scissors"];
+        let result = myArray[Math.floor(Math.random() * myArray.length)];
+        return result;
+      }
+
+      function singleRound() {
+        let playerSelection = prompt("Select Rock, Paper or Scissors");
+        playerSelection =
+          playerSelection.charAt(0).toUpperCase() +
+          playerSelection.slice(1).toLowerCase();
+
+        let computerSelection = computerPlay();
+
+        if (playerSelection === computerSelection) {
+          alert(
+            `You and computer chose ${playerSelection}. It's a tie! Your score: ${winCounter} Computer's score: ${loseCounter}`
+          );
+        } else if (
+          (playerSelection === "Rock" && computerSelection === "Scissors") ||
+          (playerSelection === "Paper" && computerSelection === "Rock") ||
+          (playerSelection === "Scissors" && computerSelection === "Paper")
+        ) {
+          winCounter++;
+          alert(
+            `You win! ${playerSelection} beats ${computerSelection}! Your score: ${winCounter} Computer's score: ${loseCounter}`
+          );
+        } else {
+          loseCounter++;
+          alert(
+            `You lose! ${computerSelection} beats ${playerSelection} Your score: ${winCounter} Computer's score: ${loseCounter}`
+          );
+        }
+      }
+
+      function game() {
+        for (i = 1; i <= 5; i++) {
+          singleRound();
+        }
+
+        if (winCounter > loseCounter) {
+          alert(
+            `You win! Your final score: ${winCounter}. Computer's final score: ${loseCounter}`
+          );
+        } else if (winCounter === loseCounter) {
+          alert(
+            `Your score: ${winCounter} Computer's score: ${loseCounter}. It's a tie!`
+          );
+        } else {
+          alert(
+            `You lose! Your score: ${winCounter} Computer's score: ${loseCounter}`
+          );
+        }
+      }
+
+      game();
+    </script>
+  </body>
+</html>
